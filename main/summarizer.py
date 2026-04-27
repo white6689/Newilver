@@ -1,10 +1,12 @@
 import os
 from anthropic import Anthropic
+from google import genai
 
 
 def summarize_articles(articles, source_name):
     """여러 기사를 AI로 요약"""
     client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    client = genai.Client()
 
     # 기사 목록을 텍스트로 정리
     articles_text = f"\n\n".join([
@@ -24,13 +26,17 @@ def summarize_articles(articles, source_name):
 
 간결하고 읽기 쉽게 작성해주세요."""
 
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=1500,
-        messages=[{"role": "user", "content": prompt}]
+    # message = client.messages.create(
+    #     model="claude-sonnet-4-20250514",
+    #     max_tokens=1500,
+    #     messages=[{"role": "user", "content": prompt}]
+    # )
+    response = client.models.generate_content(
+        model="gemini-3-flash-preview", contents="Explain how AI works in a few words"
     )
 
-    return message.content[0].text
+    # return message.content[0].text
+    return response
 
 
 # 기존 코드에 추가
