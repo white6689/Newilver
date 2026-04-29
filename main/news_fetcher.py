@@ -9,7 +9,7 @@ def fetch_techcrunch():
     feed = feedparser.parse('https://techcrunch.com/feed/')
     articles = []
 
-    for entry in feed.entries[:5]:  # 최신 5개만
+    for entry in feed.entries[:2]:  # 최신 5개만
         articles.append({
             'title': entry.title,
             'link': entry.link,
@@ -23,7 +23,7 @@ def fetch_techcrunch():
 def fetch_hackernews():
     """Hacker News API에서 top stories 가져오기"""
     top_stories_url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
-    top_ids = requests.get(top_stories_url).json()[:10]  # 상위 10개
+    top_ids = requests.get(top_stories_url).json()[:2]  # 상위 5개
 
     articles = []
     for story_id in top_ids:
