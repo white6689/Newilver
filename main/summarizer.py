@@ -21,18 +21,25 @@ def summarize_articles(articles, source_name):
 1. 오늘의 주요 트렌드 (2-3줄)
 2. 각 기사별 핵심 요약 (기사당 1-2줄, 제목과 함께)
 [기사 제목]
-- 핵심 요약 내용
-- 기사 링크
+핵심 요약 내용
+기사 링크
 3. 주목할 만한 기술/회사 키워드
 
 추가적으로
 - Markdown 표기법 없애기
 - 간결하고 읽기 쉽게 작성
+- 형식은 HTML 형식
+- 기사 제목은 한국어로
+- 글씨 색은 검정색
+- 오늘의 주요 트렌드 내용의 폰트 크기는 10, 일반 글씨체
+- 기사 제목 폰트 크기는 13, 굵은 글씨체, 글머리 기호 없음
+- 핵심 요약 내용의 폰트 크기는 10, 글머리 기호 없음, 일반 글씨체
+- 기사 링크 폰트 크기는 10, 그리고 주소를 그대로 작성해줘, 글머리 기호 없음, 일반 글씨체
 """
 
     client = genai.Client()
     response = client.models.generate_content(
-        model="gemini-2.5-flash", contents=prompt
+        model="gemini-3-flash-preview", contents=prompt
     )
     time.sleep(2)
 
